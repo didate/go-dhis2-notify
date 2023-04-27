@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    container_name: notify
+    restart: always
+    volumes:
+      - "db:/app/db"
+    environment:
+      - BD_FILE=./db/test.db
+      - DHIS2_URL=https://play.dhis2.org/2.37.9.1
+      - DHIS2_AUTH=Basic YWRtaW46ZGlzdHJpY3Q=
+      - SMTP_SERVER=smtp.com
+      - SMTP_PORT=587
+      - MAIL_USERNAME=dhis@mail.com
+      - MAIL_PASSWORD=password
+volumes:
+  db:
+   driver: local
